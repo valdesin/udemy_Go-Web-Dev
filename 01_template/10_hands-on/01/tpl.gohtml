@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    {{range .}}
+
+        <h3>.AcaYear</h3>
+        <h1>.Fall.Term</h1>
+        {{range .Fall.Courses}}
+           <ul>
+                <li>{{.Number}}</li>
+                <li>{{.Name}}</li>
+                <li>{{.Units}}</li>
+            <ul>
+        {{end}}
+
+        <h3>.AcaYear</h3>
+        <h1>.Spring.Term</h1>
+        {{range .Fall.Courses}}
+           <ul>
+                <li>{{.Number}}</li>
+                <li>{{.Name}}</li>
+                <li>{{.Units}}</li>
+            <ul>
+        {{end}}
+
+        <h3>.AcaYear</h3>
+        <h1>.Summer.Term</h1>
+        {{range .Fall.Courses}}
+           <ul>
+                <li>{{.Number}}</li>
+                <li>{{.Name}}</li>
+                <li>{{.Units}}</li>
+            <ul>
+        {{end}}
+
+    {{end}}
+
+</body>
+</html>
