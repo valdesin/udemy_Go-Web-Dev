@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DOCUMENT</title>
+</head>
+<body>
+    <h1>YOUR PICTURE: </h1>
+    {{range .}}
+        <img src="/public/pict/{{.}}" width="400px">
+    {{end}}
+    
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="nf">
+        <input type="submit">
+    </form>
+</body>
+</html>
