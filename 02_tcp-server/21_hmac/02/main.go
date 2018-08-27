@@ -1,12 +1,12 @@
 package main
 
 import (
-	"io"
+	"crypto/hmac"
+	"crypto/sha256"
 	"fmt"
+	"io"
 	"net/http"
 	"strings"
-	"crypto/sha256"
-	"crypto/hmac"
 )
 
 func main() {
@@ -16,14 +16,14 @@ func main() {
 	http.ListenAndServe(":9090", nil)
 }
 
-func foo(res http.ResponseWriter, http.Request) {
+func foo(res http.ResponseWriter, req *http.Request) {
 	c, err := req.Cookie("session")
 	if err != nil {
 		c = &http.Cookie{
-			Name: "session",
+			Name:  "session",
 			Value: "",
 		}
-	}	
+	}
 
 	if req.Method == http.MethodPost {
 		e := req.FormValue("email")
@@ -50,7 +50,7 @@ func foo(res http.ResponseWriter, http.Request) {
 	`)
 }
 
-func auth(res http.ResponseWriter, req http.Request) {
+func auth(res http.ResponseWriter, req *http.Request) {
 	c, err := req.Cookie("session")
 	if err != nil {
 		http.Redirect(res, req, "/", http.StatusSeeOther)
@@ -86,7 +86,7 @@ func auth(res http.ResponseWriter, req http.Request) {
 }
 
 func getCode(s string) string {
-	h := hmac.New(sha256.New, byte("my-key"))
+	h := hmac.New(sha256.New, []byte("my-key"))
 	io.WriteString(h, s)
-	return Sprintf("%x", h.Sum(nil))
+	return fmt.Sprintf("%x", h.Sum(nil))
 }
