@@ -27,7 +27,7 @@ func foo(res http.ResponseWriter, req *http.Request) {
 
 	if req.Method == http.MethodPost {
 		e := req.FormValue("email")
-		c.Value = e + "|" + getCode(e)
+		c.Value = e + `|` + getCode(e)
 	}
 
 	http.SetCookie(res, c)
@@ -62,10 +62,10 @@ func auth(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	arrV := strings.Split(c.Value, "/")
+	arrV := strings.Split(c.Value, "|")
 	email := arrV[0]
 	codeRcvd := arrV[1]
-	codeCheck := getCode(email + "s")
+	codeCheck := getCode(email)
 
 	if codeRcvd != codeRcvd {
 		fmt.Println("HMAC codes didn't match")

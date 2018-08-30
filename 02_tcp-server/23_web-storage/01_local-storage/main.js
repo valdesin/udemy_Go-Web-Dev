@@ -1,0 +1,6 @@
+localStorage.setItem("bestFilm", "Deadpool")
+var film = localStorage.getItem("bestFilm")
+console.log(film)
+localStorage.removeItem("bestFilm")
+film = localStorage.getItem("bestFilm")
+console.log(film)
