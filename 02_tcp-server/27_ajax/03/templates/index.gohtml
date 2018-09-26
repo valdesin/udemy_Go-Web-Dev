@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    {{if .First}}
+    USER NAME {{.UserName}}<br>
+    PASSWORD {{.Password}}<br>
+    FIRST {{.First}}<br>
+    LAST {{.Last}}<br>
+    <h2><a href="/logout">Log out</a></h2><br>
+    {{else}}
+    <h2><a href="/login">Login</a></h2><br>
+    <h2><a href="singup">Sing up</a></h2><br>
+    {{end}}
+
+    <br>
+    <h2><a href="/bar">Go to</a></h2>
+</body>
+</html>

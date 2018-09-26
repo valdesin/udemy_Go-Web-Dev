@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sing Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <form method="POST" id="form-create-user">
+        <input type="text" name="username" id="username" placeholder="email"><br>
+        <p class="form-field-err" id="username-err"></p>
+        <input type="text" name="password" id="password" placeholder="password"><br>
+        <input type="text" name="password" id="password2" placeholder="confirm password"><br>
+        <p class="form-field-err" id="password-err"></p>
+        <input type="text" name="firstname" placeholder="first name"><br>
+        <input type="text" name="lastname" placeholder="last name"><br>
+        <select name="role" id="sr">
+            <option value="user">user</option>
+            <option value="admin">admin</option>
+            <option value="007">007</option>
+        </select>
+        <input type="submit" id="submitbutton">
+    </form>
+
+    <script>
+        var formUser = document.querySelector("#form-create-user");
+        var username = document.querySelector("#username");
+        var p1 = document.querySelector("#password");
+        var p2 = document.querySelector("#password2");
+
+        var nameErr = document.querySelector("#username-err");
+        var pErr = document.querySelector("#password-err");
+
+        username.addEventListener('input', function() {
+            document.log(username.value);
+            var xhr = XMLHttpRequest();
+            xhr.open('POST', 'CheckUserName', true);
+            xhr.addEventListener('readystatechange', function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    var item = xhr.responseText;
+                    document.log(item);
+                    if (item == true) {
+                        nameErr.TextContent = 'Username taken - Try another name!';
+                        document.querySelector('#submitbutton').disabled = true;
+                    } else {
+                        nameErr.TextContent = '';
+                        document.querySelector('#submitbutton').disabled = false;
+                    }
+                }
+            });
+            xhr.send(username.value);
+        });
+
+        formUser.addEventListener('submit', function(e) {
+            var ok = validatePasswords();
+            if (!ok) {
+                e.preventDefault();
+                return;
+            }
+        });
+
+        function validatePasswords() {
+            pErr.textContent = '';
+            if (p1.value === '') {
+                pErr.textContent = 'Enter a password.';
+                return false;
+            }
+            if (p1.value !== p2.value) {
+                pErr.textContext = 'Your passwords did not match. Please re-enter your passwords.';
+                p1.value = '';
+                p2.value = '';
+                return false;
+            }
+            return true;
+        };
+    </script>
+</body>
+</html>

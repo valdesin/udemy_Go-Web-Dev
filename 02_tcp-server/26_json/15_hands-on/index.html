@@ -1,0 +1,32 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        var data = [
+            {"Code": 200, "Descript": "StatusOK"},
+            {"Code": 301, "Descript": "StatusMovedPermanently"},
+            {"Code": 302, "Descript": "StatusFound"},
+            {"Code": 303, "Descript": "StatusSeeOther"},
+            {"Code": 307, "Descript": "StatusTemporaryRedirect"},
+            {"Code": 400, "Descript": "StatusBadRequest"},
+            {"Code": 401, "Descript": "StatusUnauthorized"},
+            {"Code": 402, "Descript": "StatusPaymentRequired"},
+            {"Code": 403, "Descript": "StatusForbidden"},
+            {"Code": 404, "Descript": "StatusNotFound"},
+            {"Code": 405, "Descript": "StatusMethodNotAllowed"},
+            {"Code": 418, "Descript": "StatusTeapot"},
+            {"Code": 500, "Descript": "StatusInternalServerError"},
+        ];
+
+        var jData = JSON.stringify(data)
+        document.write(jData)
+
+    </script>
+</body>
+</html>
